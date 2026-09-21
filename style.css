@@ -1,0 +1,1970 @@
+/* =========================================================
+    📌 دعوة زفاف — style.css (نسخة منظمة)
+    الفهرس:
+    1. الخطوط والاستيراد
+    2. المتغيرات (Variables)
+    3. إعادة الضبط الأساسية (Reset & Body)
+    4. حاويات التخطيط العامة
+    5. شاشة البداية (الستارة + زر الفتح)
+    6. القسم الرئيسي (Hero)
+    7. بطاقة الترحيب
+    8. الموقع والتقويم
+    9. العد التنازلي
+    10. عناوين الأقسام العامة
+    11. برنامج المناسبة (Timeline)
+    12. تفاصيل الحفل
+    13. رسالة الختام
+    14. ملاحظات أسفل البرنامج
+    15. لحظات الحفل ورسائل التهنئة
+    16. الفوتر
+    17. شريط التنقل السفلي
+    18. النوافذ المنبثقة (Modals) والعناصر التفاعلية
+    19. قسم "قصتنا" (المنسدل)
+    20. رمز الدخول QR
+    21. البريق واللمعان الكريستالي (Sparkle & Shimmer)
+    22. ظهور النصوص المتدرج (Text Reveal / Stagger)
+    ========================================================= */
+
+
+    /* =========================================================
+    1. الخطوط والاستيراد
+    ========================================================= */
+    @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Playwrite+AU+TAS:wght@100..400&display=swap');
+
+    @font-face {
+        font-family: "Shafigh";
+        src: url("./FS_Diwany.ttf") format("truetype");
+        font-weight: normal;
+        font-style: normal;
+    }
+
+:root {
+
+    /* اللون الأساسي للنص - بني غامق دافئ (تباين قوي فوق الخلفية الفاتحة) */
+    --text-main: #3A3430;
+
+    /* النصوص الثانوية - بني رمادي متوسط الغمقان */
+    --text-dark: #5C544D;
+
+    /* خلفية البطاقات - أبيض لؤلؤي شفاف مع لمسة دفء */
+    --card-bg: rgba(255, 253, 248, 0.92);
+
+    /* الذهبي الفاخر - مطابق لدرجة الذهب بالكريستال في الصورة */
+    --gold-accent: #B8925A;
+
+    /* حدود ذهبية خفيفة */
+    --border-color: rgba(184, 146, 90, 0.4);
+
+    /* اللون الرئيسي - بني فاتح دافئ بدل الرمادي البارد */
+    --primary-color: #8A7D6E;
+
+    /* خلفية الموقع - عاجي فاتح متناغم مع الصورة بدل الفضي البارد */
+    --background-main: #F7F3EC;
+
+    /* لون العناوين - أسود دافئ، أقوى تباين ممكن */
+    --heading-color: #211E1B;
+
+    /* لون مساعد - بيج فاتح دافئ بدل الفضي البارد */
+    --accent-soft: #E8E0D3;
+
+    /* لون داكن جدًا للتباين الأقصى (نصوص فوق الصورة مباشرة) */
+    --royal-dark: #1C1916;
+
+    /* وردي/خمري دافئ - تفاصيل مهمة، يبرز فوق الكريمي */
+    --rose-red: #8C5B54;
+}
+    /* =========================================================
+    3. إعادة الضبط الأساسية (Reset & Body)
+    ========================================================= */
+    * {
+        margin: 0;
+        padding: 0;
+        outline: none !important;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Tajawal', sans-serif;
+        color: var(--text-main);
+        overflow-x: hidden !important;
+        background-color: #f6f4ef; /* لون احتياطي في حال تأخر صورة الخلفية */
+        margin: 0;
+        padding: 0;
+    }
+
+    /* صورة الخلفية الثابتة (بديل متوافق مع آيفون عن background-attachment: fixed) */
+    body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background-image: url('back.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        z-index: -1;
+    }
+
+
+    /* =========================================================
+    4. حاويات التخطيط العامة
+    ========================================================= */
+    .main-wrapper {
+        overflow-x: hidden;
+        width: 100%;
+        position: relative;
+    }
+
+    .app-container {
+        max-width: 480px;
+        margin: 0 auto;
+        padding: 40px 20px 120px;
+        display: flex;
+        flex-direction: column;
+        gap: 50px;
+        align-items: center;
+    }
+
+    /* ملاحظة: علامة \ موجودة لتخطي الأقواس المربعة لتعمل ككلاس CSS صحيح */
+    .max-w-\[393px\] {
+        max-width: 393px;
+    }
+
+
+    /* =========================================================
+    5. شاشة البداية (الستارة + زر الفتح)
+    ========================================================= */
+    .curtain-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 9999;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+    }
+.curtain-left,
+.curtain-right {
+    position: absolute;
+    top: 0;
+    width: 50%;
+    height: 100%;
+
+    background-image: url("SD.png");
+    background-size: 200% 100%;
+    background-repeat: no-repeat;
+
+    background-color: rgba(255, 250, 235, 0.08);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+
+    border: 1px solid rgba(255, 235, 150, 0.15);
+
+    transition: transform 1.2s cubic-bezier(0.7, 0, 0.3, 1);
+
+    z-index: 50;
+    will-change: transform;
+}
+
+.curtain-left {
+    left: 0;
+    background-position: left center;
+}
+
+.curtain-right {
+    right: 0;
+    background-position: right center;
+}
+    /* إعدادات الستارة الزجاجية المشتركة */
+    /* .curtain-right,
+    .curtain-left {
+        position: absolute;
+        top: 0;
+        width: 50%;
+        height: 100%;
+        background: rgba(255, 250, 235, 0.08);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        border: 1px solid rgba(255, 235, 150, 0.15);
+        transition: transform 1.2s cubic-bezier(0.7, 0, 0.3, 1);
+        z-index: 50;
+        will-change: transform;
+    }
+
+    .curtain-left {
+        left: 0;
+        transform-origin: left center;
+        border-right: 1px solid rgba(255, 235, 150, 0.35);
+        box-shadow: 5px 0 25px rgba(218, 165, 32, 0.08), inset -5px 0 15px rgba(255, 235, 150, 0.05);
+    }
+
+    .curtain-right {
+        right: 0;
+        transform-origin: right center;
+        border-left: 1px solid rgba(255, 235, 150, 0.35);
+        box-shadow: -5px 0 25px rgba(218, 165, 32, 0.08), inset 5px 0 15px rgba(255, 235, 150, 0.05);
+    } */
+
+    .entry-button-wrapper {
+        position: relative;
+        z-index: 10000;
+        cursor: pointer;
+        transition: all 0.5s ease;
+    }
+
+    .entry-circle {
+        width: 180px;
+        height: 180px;
+        background: #fcfaf600;
+        border-radius: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        overflow: hidden;
+        align-items: center;
+        text-align: center;
+        position: relative;
+    }
+
+    .circle-foliage {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        /* background-image: url('ogson.png'); */
+        background-size: contain;
+        background-repeat: no-repeat;
+        opacity: 0.6;
+    }
+
+    .entry-names {
+        font-family: 'Aref Ruqaa', serif;
+        font-size: 1.4rem;
+        color: #6b695e;
+        line-height: 1.2;
+        margin-bottom: 5px;
+    }
+
+    .entry-open {
+        font-size: 0.8rem;
+        letter-spacing: 2px;
+        color: #a9a494;
+        border-top: 1px solid #e6e4dc;
+        padding-top: 5px;
+    }
+
+    /* حالة الفتح (تُضاف بواسطة main.js) */
+    .curtain-opened .curtain-left {
+        transform: translateX(-100%);
+    }
+
+    .curtain-opened .curtain-right {
+        transform: translateX(100%) rotateY(180deg);
+    }
+
+    .curtain-opened .entry-button-wrapper {
+        opacity: 0;
+        visibility: hidden;
+        transform: scale(1.5);
+    }
+
+    /* نص مقدمة اختياري فوق شاشة الستارة (إن استُخدم) */
+    .story-intro {
+        position: absolute;
+        top: -95px;
+        width: 100%;
+        text-align: center;
+        color: #141008;
+        font-size: 1.45rem;
+        line-height: 1.8;
+        opacity: 0;
+        animation: introFade 2s ease forwards;
+        animation-delay: 0.8s;
+        text-shadow: 0 1px 8px rgba(255, 255, 255, 0.8);
+    }
+    
+
+    @keyframes introFade {
+        from { opacity: 0; transform: translateY(15px); }
+        to   { opacity: 1; transform: translateY(-15px); }
+    }
+
+
+    /* =========================================================
+    6. القسم الرئيسي (Hero)
+    ========================================================= */
+    .hero {
+        position: relative; /* لتثبيت مؤشر السحب scroll-indicator بالأسفل */
+        height: 80vh;
+        margin: 0 auto;
+        text-align: center;
+        padding: 40px 20px 120px;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .hero-subtitle {
+        font-size: 1.7rem;
+        font-weight: 500;
+        font-family: 'aref ruqaa', cursive !important;
+        margin-top: 70px;
+        margin-bottom: 50px;
+    }
+
+    .hero-names {
+        font-size: 4.2rem;
+        color: var(--text-dark);
+        line-height: 1;
+        font-weight: 700;
+        font-family: 'aref ruqaa', cursive !important;
+        text-align: center;
+        direction: ltr; /* لضمان صحة محاذاة الأسماء الإنجليزية إن وُجدت */
+    }
+
+    /* تغليف الاسم واللقب لترتيبهم عموديًا */
+    .name-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: fit-content;
+
+        margin: 10px auto;
+    }
+
+    .title-prefix {
+        font-size: 0.45em;
+        color: #322b3b;
+        font-family: "aref ruqaa", cursive !important;
+        font-weight: normal;
+        text-align: center;
+        margin-bottom: -5px;
+        margin-right: 2px;
+    }
+
+    .ampersand-wrapper {
+        display: block;
+        margin: 10px 0;
+    }
+
+    .ampersand {
+        font-size: 2.5rem;
+        color: var(--text-dark);
+    }
+
+    .hero-date {
+        margin-top: 50px;
+        font-size: 1.0rem;
+    }
+
+    /* إشارة السحب للأسفل */
+    .scroll-indicator {
+        position: absolute;
+        bottom: -20px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: #a9a494;
+        opacity: 0.8;
+        animation: bounce 2s infinite ease-in-out;
+    }
+
+    .scroll-indicator .text {
+        font-size: 0.95rem;
+        margin-bottom: 5px;
+        color: #1b011c;
+        letter-spacing: 1px;
+        font-weight: 500;
+        background: #ffffffb3;
+        padding: 5px;
+        border-radius: 5px;
+    }
+
+    .scroll-indicator .icon {
+        font-size: 1.4rem;
+    }
+
+    @keyframes bounce {
+        0%, 20%, 50%, 80%, 100% { transform: translate(-50%, 0); }
+        40% { transform: translate(-50%, -8px); }
+        60% { transform: translate(-50%, -4px); }
+    }
+
+
+    /* =========================================================
+    7. بطاقة الترحيب
+    ========================================================= */
+    .welcome-card {
+        background: var(--card-bg);
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        padding: 40px 20px;
+        text-align: center;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+        width: 100%;
+    }
+
+    .bismillah {
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin-bottom: 10px;
+        color: var(--text-dark);
+    }
+
+    .welcome-text {
+        line-height: 2.2;
+        font-size: 1.1rem;
+        margin-bottom: 30px;
+    }
+
+    .welcome-names {
+        font-weight: bold;
+        font-size: 1.2rem;
+        color: var(--text-dark);
+    }
+
+
+    /* =========================================================
+    8. الموقع والتقويم
+    ========================================================= */
+    .location-section {
+        text-align: center;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .location-name {
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: var(--text-dark);
+    }
+
+    .location-address {
+        font-size: 0.9rem;
+        margin-bottom: 30px;
+    }
+
+    .calendar-card {
+        background: #fff;
+        width: 80%;
+        border-radius: 20px;
+        position: relative;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+        margin-bottom: 25px;
+    }
+
+    .calendar-rings {
+        position: absolute;
+        top: -10px;
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        padding: 0 40px;
+    }
+
+    .ring {
+        width: 25px;
+        height: 35px;
+        border: 3px solid rgba(255, 255, 255, 0.6);
+        border-radius: 12px;
+        background: transparent;
+        box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .calendar-header {
+        background: var(--text-dark);
+        color: #fff;
+        border-radius: 20px 20px 0 0;
+        padding: 25px 20px 15px;
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.9rem;
+    }
+
+    .calendar-header .month {
+        font-size: 1.2rem;
+        font-weight: bold;
+    }
+
+    .calendar-body {
+        padding: 20px;
+        border-radius: 0 0 20px 20px;
+    }
+
+    .big-day {
+        font-size: 5rem;
+        color: #a9a494;
+        line-height: 1;
+        margin-bottom: 10px;
+    }
+
+    .day-name {
+        font-weight: bold;
+        font-size: 1.1rem;
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 10px;
+        width: 50%;
+        margin: 0 auto 10px;
+    }
+
+    .save-date-btn {
+        background: transparent;
+        border: 1px solid var(--border-color);
+        padding: 10px 30px;
+        border-radius: 25px;
+        color: var(--text-main);
+        font-size: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        cursor: pointer;
+    }
+
+
+    /* =========================================================
+    9. العد التنازلي
+    ========================================================= */
+    .countdown-section {
+        width: 100%;
+        background-size: cover;
+        background-position: center;
+        border-radius: 20px;
+        padding: 30px;
+    }
+
+    .countdown-section .section-title {
+        font-size: 1.1rem;
+        color: #8c8877;
+        text-align: center;
+        margin-bottom: 25px;
+        font-weight: 500;
+    }
+
+    .countdown-boxes {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        padding: 10px;
+    }
+
+    .countdown-boxes .box {
+        background-color: var(--card-bg);
+        border-radius: 15px;
+        padding: 15px 5px;
+        text-align: center;
+        flex: 1;
+        max-width: 90px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        /* تصميم Neumorphic ناعم */
+        box-shadow: 6px 6px 12px #e3e1da, -6px -6px 12px #ffffff;
+        transition: transform 0.2s ease-in-out;
+    }
+
+    .countdown-boxes .box:hover {
+        transform: translateY(-3px);
+    }
+
+    .countdown-boxes .num {
+        display: block;
+        font-size: 1.8rem;
+        font-weight: bold;
+        color: var(--text-dark);
+        line-height: 1.1;
+        margin-bottom: 5px;
+    }
+
+    .countdown-boxes .label {
+        display: block;
+        font-size: 0.8rem;
+        color: #8c8877;
+        font-weight: normal;
+        text-align: center;
+    }
+
+
+    /* =========================================================
+    10. عناوين الأقسام العامة
+    ========================================================= */
+    .section-title {
+        font-size: 1.1rem;
+        color: var(--text-main);
+        text-align: center;
+        margin-bottom: 20px;
+        font-weight: 500;
+    }
+
+
+    /* =========================================================
+    11. برنامج المناسبة (Timeline)
+    ========================================================= */
+    .timeline-section {
+        width: 100%;
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 25px;
+        padding: 40px 25px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+        margin-top: 20px;
+    }
+
+    .timeline-section .section-title {
+        color: var(--primary-color);
+        margin-bottom: 45px;
+        font-size: 1.2rem;
+        font-weight: 700;
+        letter-spacing: 1px;
+        text-align: center;
+    }
+
+    .timeline {
+        position: relative;
+        padding: 0;
+        margin: 0 auto;
+    }
+
+    /* الخط المركزي الفاصل */
+    .timeline::before {
+        content: '';
+        position: absolute;
+        left: 50%;
+        top: 5px;
+        bottom: -15px;
+        width: 2px;
+        background: linear-gradient(to bottom, transparent, var(--text-dark), transparent);
+        opacity: 0.4;
+        transform: translateX(-50%);
+    }
+
+    /* النقطة المتحركة مع التمرير */
+    .scroll-tracker-dot {
+        background-image: url('flower-decor.png.webp');
+        position: absolute;
+        left: 50%;
+        top: 0;
+        transform: translateX(-50%);
+        width: 16px;
+        height: 16px;
+        background-color: var(--gold-accent);
+        border-radius: 50%;
+        z-index: 3;
+        box-shadow: 0 0 15px 5px rgba(212, 170, 55, 0.6);
+        transition: top 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        display: none; /* يُظهرها main.js */
+    }
+
+    .timeline-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 45px;
+        position: relative;
+        width: 100%;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .timeline-item:last-child {
+        margin-bottom: 10px;
+    }
+
+    .timeline-item .dot {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 14px;
+        height: 14px;
+        background-color: var(--primary-color);
+        border-radius: 50%;
+        z-index: 2;
+        border: 3px solid #fff;
+        box-shadow: 0 0 15px rgba(116, 81, 123, 0.3);
+        transition: all 0.3s ease;
+    }
+
+    .timeline-item.active .dot {
+        width: 18px;
+        height: 18px;
+        background-color: var(--text-dark);
+        border: 4px solid #fff;
+        box-shadow: 0 0 20px 5px rgba(212, 175, 55, 0.4);
+        animation: pulse-gold 2s infinite;
+    }
+
+    @keyframes pulse-gold {
+        0%   { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7); }
+        70%  { box-shadow: 0 0 0 10px rgba(212, 175, 55, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
+    }
+
+    .timeline-item .content {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0;
+    }
+
+    .timeline-item .content .event-name {
+        flex: 1;
+        text-align: left;
+        padding-left: 30px;
+        font-size: 1.05rem;
+        font-weight: 600;
+        color: var(--primary-color);
+        transition: color 0.3s ease;
+    }
+
+    .timeline-item .content .time-container {
+        flex: 1;
+        text-align: right;
+        padding-right: 30px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .timeline-item .content .event-time {
+        font-size: 0.95rem;
+        font-weight: 400;
+        color: #666;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .timeline-item:hover {
+        transform: scale(1.02);
+    }
+
+    .timeline-item:hover .event-name {
+        color: var(--text-dark);
+    }
+
+
+    /* =========================================================
+    12. تفاصيل الحفل
+    ========================================================= */
+    .details-section {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .details-list {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    /* تأثير زجاجي (Glassmorphism) */
+    .detail-item {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        padding: 18px 25px;
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+    }
+
+    .detail-item:hover {
+        background: rgba(255, 255, 255, 0.15);
+        transform: translateY(-2px);
+        border-color: var(--primary-color);
+    }
+
+    .detail-item .bullet {
+        width: 10px;
+        height: 10px;
+        background: var(--text-dark);
+        border-radius: 50%;
+        box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+    }
+
+
+    /* =========================================================
+    13. رسالة الختام
+    ========================================================= */
+    .closing-message {
+        text-align: center;
+        line-height: 2;
+        font-size: 1.1rem;
+    }
+
+    .closing-message .highlight {
+        margin-top: 15px;
+        color: var(--text-dark);
+    }
+
+
+    /* =========================================================
+    14. ملاحظات أسفل البرنامج
+    ========================================================= */
+    .timeline-notes {
+        margin-top: 40px;
+        padding-top: 25px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .note-item {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        background: rgba(255, 255, 255, 0.03);
+        padding: 12px 20px;
+        border-radius: 15px;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        transition: all 0.3s ease;
+    }
+
+    .note-item:hover {
+        background: rgba(255, 255, 255, 0.07);
+        transform: translateY(-2px);
+    }
+
+    .note-icon {
+        font-size: 1.3rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .note-text {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.95rem;
+        color: var(--text-main);
+    }
+
+    .note-text strong {
+        color: var(--primary-color);
+        font-weight: 600;
+    }
+
+    .note-details {
+        color: #666;
+    }
+
+    .private-note {
+        border-right: 3px solid var(--text-dark);
+    }
+
+    .note-details.badge {
+        background: linear-gradient(135deg, #74517B, #9b72a4);
+        color: #fff;
+        padding: 2px 10px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: bold;
+        letter-spacing: 0.5px;
+        box-shadow: 0 4px 10px rgba(116, 81, 123, 0.2);
+    }
+
+
+    /* =========================================================
+    15. لحظات الحفل ورسائل التهنئة
+    ========================================================= */
+    .moments-section {
+        width: 100%;
+        text-align: center;
+    }
+
+    .video-placeholder {
+        position: relative;
+        height: 420px;
+        border-radius: 20px;
+        overflow: hidden;
+        background: #111;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 30px;
+        font-family: serif;
+    }
+
+    /* صورة عامة تُستخدم بأكثر من قسم (لحظات الحفل / قصتنا) — راجعي القسم 19 للنسخة المخصصة داخل .story-section */
+    .story-img {
+        width: 100%;
+        height: 200%;
+        object-fit: cover;
+    }
+
+    .poem-overlay {
+        position: absolute;
+        inset: 0;
+        border-radius: 15px;
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.15), rgba(150, 142, 108, 0.65));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 30px;
+    }
+
+    .poem-overlay p {
+        color: #fff;
+        font-family: "Amiri", serif;
+        font-size: 1.5rem;
+        line-height: 2;
+        text-align: center;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .attendance-stats {
+        margin-bottom: 30px;
+    }
+
+    .stat-number {
+        font-size: 3rem;
+        color: var(--text-dark);
+        line-height: 1;
+        border-bottom: 1px solid var(--border-color);
+        display: inline-block;
+        padding-bottom: 10px;
+    }
+
+    .message-bubble {
+        background: var(--card-bg);
+        padding: 20px;
+        border-radius: 20px;
+        color: var(--text-dark);
+        margin-top: 15px;
+    }
+
+
+    /* =========================================================
+    16. الفوتر
+    ========================================================= */
+    .footer {
+        text-align: center;
+        font-size: 0.9rem;
+        border-top: 1px solid var(--border-color);
+        padding-top: 30px;
+        width: 100%;
+    }
+
+    .footer-names {
+        font-weight: bold;
+        font-size: 1.2rem;
+        color: var(--text-dark);
+    }
+
+    .footer-heart {
+        margin: 10px 0;
+    }
+
+
+    /* =========================================================
+    17. شريط التنقل السفلي
+    ========================================================= */
+    .bottom-nav {
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 92%;
+        max-width: 420px;
+        background: rgba(246, 244, 238, 0.85);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        border: 1px solid rgba(255, 255, 255, 0.6);
+        border-radius: 40px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding: 10px 5px 8px;
+        z-index: 1000;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    }
+
+    .nav-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-decoration: none;
+        color: #8c8877;
+        font-size: 0.65rem;
+        font-weight: 500;
+        gap: 6px;
+        flex: 1;
+    }
+
+    .nav-item .label {
+        font-size: 11px;
+        margin-top: 2px;
+    }
+
+    .nav-item:not(.center-action) .icon {
+        width: 42px;
+        height: 42px;
+        background-color: #ebe7dd;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.1rem;
+        transition: all 0.3s ease;
+    }
+
+    .nav-item:not(.center-action):hover .icon {
+        background-color: #dfdcd1;
+        transform: scale(1.05);
+    }
+
+    .center-action {
+        transform: translateY(-8px);
+    }
+
+    .gold-circle {
+        width: 58px;
+        height: 58px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #e3c67b, #cba44c);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        font-size: 1.4rem;
+        box-shadow: 0 6px 20px rgba(203, 164, 76, 0.4), inset 0 2px 5px rgba(255, 255, 255, 0.4);
+    }
+
+
+    /* =========================================================
+    18. النوافذ المنبثقة (Modals) والعناصر التفاعلية
+    ========================================================= */
+    .heart-active {
+        color: #e74c3c !important;
+    }
+
+    .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.4);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 2000;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+    }
+
+    .modal-overlay.active {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .modal-content {
+        background: #fcfaf6;
+        padding: 30px;
+        border-radius: 20px;
+        text-align: center;
+        position: relative;
+        width: 80%;
+        max-width: 320px;
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        transform: translateY(20px);
+        transition: all 0.3s ease;
+    }
+
+    .modal-overlay.active .modal-content {
+        transform: translateY(0);
+    }
+
+    .close-modal {
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        font-size: 1.8rem;
+        cursor: pointer;
+        color: #8c8877;
+        line-height: 1;
+    }
+
+    .map-link {
+        display: inline-block;
+        background: linear-gradient(135deg, #e3c67b, #cba44c);
+        color: white;
+        padding: 10px 25px;
+        border-radius: 20px;
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 500;
+        box-shadow: 0 4px 15px rgba(203, 164, 76, 0.3);
+    }
+
+
+    /* =========================================================
+    19. قسم "قصتنا" (المنسدل الملكي)
+    ========================================================= */
+    .story-section {
+        width: 100%;
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-radius: 25px;
+        overflow: hidden;
+        box-shadow: 0 15px 35px rgba(116, 81, 123, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .story-header {
+        cursor: pointer;
+        position: relative;
+        width: 100%;
+        height: 340px;
+        overflow: hidden;
+    }
+
+    .story-image-container {
+        position: relative;
+        width: 100%;
+        height: 100%;
+    }
+
+    /* نسخة مخصصة من .story-img (القسم 15) بخصوصية أعلى — تطبق فقط على صورة قسم "قصتنا" */
+    .story-section .story-img {
+        width: 100%;
+        height: 150%;
+        object-fit: cover;
+        filter: brightness(0.77) contrast(1.1);
+        transition: transform 0.8s cubic-bezier(0.2, 0, 0.2, 1);
+    }
+
+    .story-header:hover .story-img {
+        transform: scale(1.1);
+    }
+
+    .story-overlay-title {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
+        align-items: center;
+        color: #fcfaf6;
+        gap: 15px;
+        background: linear-gradient(to bottom, transparent, rgba(123, 112, 81, 0.4));
+    }
+
+    .story-overlay-title h2 {
+        font-family: 'Aref Ruqaa', serif;
+        font-size: 2.8rem;
+        font-weight: 500;
+        margin: 0;
+        animation: story-glow-pulse 2.5s infinite ease-in-out;
+        text-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+    }
+
+    @keyframes story-glow-pulse {
+        0%   { text-shadow: 0 0 10px rgba(255, 255, 255, 0.4), 0 0 20px rgba(212, 175, 55, 0.2); transform: scale(1); }
+        50%  { text-shadow: 0 0 25px rgba(255, 255, 255, 0.8), 0 0 40px rgba(212, 175, 55, 0.5); transform: scale(1.03); }
+        100% { text-shadow: 0 0 10px rgba(255, 255, 255, 0.4), 0 0 20px rgba(212, 175, 55, 0.2); transform: scale(1); }
+    }
+
+    #story-arrow {
+        font-size: 1.8rem;
+        color: var(--text-dark);
+        transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.5));
+    }
+
+    .story-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        background: rgba(255, 255, 255, 0.02);
+    }
+
+    .story-section.open .story-content {
+        max-height: 1200px;
+        padding: 40px 25px;
+    }
+
+    .story-section.open #story-arrow {
+        transform: rotate(180deg) translateY(5px);
+        color: #fff;
+    }
+
+    .story-timeline {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        padding-right: 25px;
+    }
+
+    .story-timeline::before {
+        content: '';
+        position: absolute;
+        right: 6px;
+        top: 5px;
+        bottom: 5px;
+        width: 2px;
+        background: linear-gradient(to bottom, var(--primary-color), var(--text-dark));
+        opacity: 0.3;
+    }
+
+    .story-item {
+        display: flex;
+        align-items: center;
+        position: relative;
+        transition: transform 0.3s ease;
+    }
+
+    .story-item:hover {
+        transform: translateX(-5px);
+    }
+
+    .story-date {
+        font-size: 0.9rem;
+        color: var(--primary-color);
+        width: 100px;
+        text-align: right;
+        font-weight: 600;
+    }
+
+    .story-dot {
+        width: 12px;
+        height: 12px;
+        background-color: #fff;
+        border: 2px solid var(--primary-color);
+        border-radius: 50%;
+        position: absolute;
+        right: 1px;
+        z-index: 2;
+        box-shadow: 0 0 10px rgba(116, 81, 123, 0.2);
+    }
+
+    .story-item:last-child .story-dot {
+        background-color: var(--text-dark);
+        border-color: #fff;
+        width: 14px;
+        height: 14px;
+        right: 0px;
+        box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+    }
+
+    .story-text {
+        font-size: 1rem;
+        color: #4A4A4A;
+        font-weight: 500;
+        margin-right: 30px;
+        line-height: 1.6;
+    }
+
+
+    /* =========================================================
+    20. رمز الدخول QR
+    ========================================================= */
+    .qr-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .qr-image {
+        max-width: 200px;
+        height: auto;
+        display: block;
+    }
+
+    /* سلايدر الصور المتحركة داخل .video-placeholder */
+    .slide-img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0;
+        transition: opacity 1.2s ease-in-out;
+        z-index: 1;
+    }
+
+    .slide-img.active {
+        opacity: 1;
+        z-index: 2;
+    }
+
+
+    /* =========================================================
+   ✨ FADE IN ANIMATION
+   ========================================================= */
+
+.fade-in {
+    opacity: 0;
+    transform: translateY(25px);
+    transition:
+        opacity 0.9s ease,
+        transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.fade-in.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* ظهور تدريجي للعناصر داخل الأقسام */
+.fade-in-delay-1 {
+    transition-delay: 0.15s;
+}
+
+.fade-in-delay-2 {
+    transition-delay: 0.30s;
+}
+
+.fade-in-delay-3 {
+    transition-delay: 0.45s;
+}
+
+.fade-in-delay-4 {
+    transition-delay: 0.60s;
+}
+
+
+/* حركة Fade In بسيطة من الأعلى */
+.fade-in-top {
+    opacity: 0;
+    transform: translateY(-20px);
+    transition:
+        opacity 1s ease,
+        transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.fade-in-top.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* Fade In من اليمين */
+.fade-in-right {
+    opacity: 0;
+    transform: translateX(30px);
+    transition:
+        opacity 0.9s ease,
+        transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.fade-in-right.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+
+/* Fade In من اليسار */
+.fade-in-left {
+    opacity: 0;
+    transform: translateX(-30px);
+    transition:
+        opacity 0.9s ease,
+        transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.fade-in-left.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+
+/* =========================================================
+   21. البريق واللمعان الكريستالي (Sparkle & Shimmer)
+   ========================================================= */
+
+/* --- نقاط بريق صغيرة تتلألأ فوق الخلفية الكريستالية --- */
+.sparkle-layer {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.sparkle {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background: radial-gradient(circle, #ffffff 0%, var(--gold-accent) 60%, transparent 80%);
+    border-radius: 50%;
+    opacity: 0;
+    animation: sparkle-twinkle 3.5s ease-in-out infinite;
+    will-change: opacity, transform;
+}
+
+@keyframes sparkle-twinkle {
+    0%, 100% { opacity: 0; transform: scale(0); }
+    50%      { opacity: 1; transform: scale(1); }
+}
+
+/* --- لمعان يعبر البطاقات (يوضع على أي بطاقة عبر class إضافي) --- */
+.card-shimmer {
+    position: relative;
+    overflow: hidden;
+}
+
+.card-shimmer::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -150%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.55), transparent);
+    animation: shimmer-sweep 5s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes shimmer-sweep {
+    0%        { left: -150%; }
+    50%, 100% { left: 150%; }
+}
+
+
+/* =========================================================
+   22. ظهور النصوص المتدرج (Text Reveal / Stagger)
+   ========================================================= */
+
+.text-reveal {
+    opacity: 0;
+    margin: 10px;
+    
+    transform: translateY(12px);
+    transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.stagger-group.show .text-reveal {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* تدرّج زمني تلقائي حسب ترتيب العنصر داخل مجموعته (حتى 8 عناصر) */
+.stagger-group.show .text-reveal:nth-child(1) { transition-delay: 0.05s; }
+.stagger-group.show .text-reveal:nth-child(2) { transition-delay: 0.15s; }
+.stagger-group.show .text-reveal:nth-child(3) { transition-delay: 0.25s; }
+.stagger-group.show .text-reveal:nth-child(4) { transition-delay: 0.35s; }
+.stagger-group.show .text-reveal:nth-child(5) { transition-delay: 0.45s; }
+.stagger-group.show .text-reveal:nth-child(6) { transition-delay: 0.55s; }
+.stagger-group.show .text-reveal:nth-child(7) { transition-delay: 0.65s; }
+.stagger-group.show .text-reveal:nth-child(8) { transition-delay: 0.75s; }
+
+
+/* =========================================================
+   احترام إعداد "تقليل الحركة" لكل التأثيرات الجديدة والقديمة
+   ========================================================= */
+@media (prefers-reduced-motion: reduce) {
+    .sparkle,
+    .card-shimmer::after,
+    .text-reveal,
+    .fade-in,
+    .fade-in-top,
+    .fade-in-right,
+    .fade-in-left {
+        animation: none !important;
+        transition: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+    }
+}
+
+/* =========================================================
+   23. ✨ حزمة التأثيرات الذهبية المضافة (إنيميشن نصوص + بريق)
+   ========================================================= */
+
+/* --- ظهور النصوص المستقل (خارج stagger-group) مع تأثير الضباب --- */
+.text-reveal {
+    filter: blur(4px);
+}
+
+.text-reveal.show {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+}
+
+/* --- نص ذهبي متدرج متحرك (لمعان يعبر الحروف) --- */
+.gold-text {
+    background: linear-gradient(90deg,
+        #9a7b3f 0%,
+        #c6a15b 25%,
+        #f7e7b4 50%,
+        #c6a15b 75%,
+        #9a7b3f 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: goldShine 4s linear infinite;
+}
+
+@keyframes goldShine {
+    to { background-position: 200% center; }
+}
+
+/* --- تطبيق اللمعان الذهبي على العناوين والأسماء والرقم الكبير --- */
+.section-title,
+.welcome-names,
+.footer-names,
+.big-day {
+    background: linear-gradient(90deg,
+        #8a6d3b 0%,
+        #c6a15b 30%,
+        #fdf0c8 50%,
+        #c6a15b 70%,
+        #8a6d3b 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: goldShine 5s linear infinite;
+}
+
+/* خط ذهبي لامع يعبر تحت العناوين */
+.section-title {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    right: 50%;
+    transform: translateX(50%);
+    width: 60px;
+    height: 2px;
+    border-radius: 2px;
+    background: linear-gradient(90deg, transparent, #c6a15b, #fdf0c8, #c6a15b, transparent);
+    background-size: 200% auto;
+    animation: goldShine 3s linear infinite;
+}
+
+/* --- إنيميشن حروف الأسماء (تظهر حرفاً حرفاً) --- */
+.hero-letter {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(35px) rotate(10deg) scale(0.6);
+    text-shadow: 0 0 18px rgba(198, 161, 91, 0.35);
+}
+
+/* تشتغل حركة الحروف فقط بعد فتح الستارة */
+body.invitation-started .hero-letter {
+    animation: letterReveal 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* دخول ناعم لعناصر الواجهة بعد فتح الستارة */
+body.invitation-started .hero .fade-in-top,
+body.invitation-started .hero .fade-in-right,
+body.invitation-started .hero .fade-in-left,
+body.invitation-started .hero .fade-in {
+    opacity: 0;
+}
+
+body.invitation-started .hero .fade-in-top.show,
+body.invitation-started .hero .fade-in-right.show,
+body.invitation-started .hero .fade-in-left.show,
+body.invitation-started .hero .fade-in.show {
+    animation: heroFadeIn 1.1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes heroFadeIn {
+    from { opacity: 0; transform: translateY(25px); filter: blur(4px); }
+    to   { opacity: 1; transform: translateY(0);    filter: blur(0); }
+}
+
+@keyframes letterReveal {
+    0% {
+        opacity: 0;
+        transform: translateY(35px) rotate(10deg) scale(0.6);
+        filter: blur(6px);
+    }
+    60% {
+        filter: blur(0);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) rotate(0deg) scale(1);
+        filter: blur(0);
+    }
+}
+
+/* توهج نبضي ناعم لعلامة & */
+.ampersand {
+    display: inline-block;
+    animation: ampersandGlow 2.5s ease-in-out infinite;
+}
+
+@keyframes ampersandGlow {
+    0%, 100% {
+        text-shadow: 0 0 8px rgba(198, 161, 91, 0.3);
+        transform: scale(1);
+    }
+    50% {
+        text-shadow: 0 0 22px rgba(198, 161, 91, 0.7);
+        transform: scale(1.08);
+    }
+}
+
+/* --- حدود ذهبية متحركة تنساب حول البطاقات --- */
+.welcome-card,
+.calendar-card,
+.message-bubble,
+.detail-item {
+    border: 1.5px solid transparent;
+    background:
+        linear-gradient(var(--card-bg), var(--card-bg)) padding-box,
+        linear-gradient(120deg,
+            rgba(198, 161, 91, 0.55),
+            rgba(253, 240, 200, 0.9),
+            rgba(198, 161, 91, 0.25),
+            rgba(253, 240, 200, 0.9),
+            rgba(198, 161, 91, 0.55)) border-box;
+    background-size: 100% 100%, 300% 300%;
+    animation: borderFlow 7s linear infinite;
+}
+
+@keyframes borderFlow {
+    to { background-position: 0 0, 300% 0; }
+}
+
+/* --- بريق عائم إضافي (يُولّد عبر effects.js) --- */
+.dynamic-sparkle {
+    position: fixed;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 1;
+    background: radial-gradient(circle, #ffffff 0%, #f7e7b4 45%, rgba(198, 161, 91, 0.6) 70%, transparent 80%);
+    opacity: 0;
+    animation: sparkleTwinkle var(--dur, 4s) ease-in-out var(--delay, 0s) infinite;
+    will-change: opacity, transform;
+}
+
+@keyframes sparkleTwinkle {
+    0%, 100% { opacity: 0; transform: scale(0) rotate(0deg); }
+    50%      { opacity: 0.95; transform: scale(1) rotate(90deg); }
+}
+
+/* --- قلوب وردية ذهبية متطايرة في الخلفية --- */
+.float-heart {
+    position: fixed;
+    bottom: -30px;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0;
+    animation: floatHeartUp var(--dur, 12s) linear var(--delay, 0s) infinite;
+    will-change: transform, opacity;
+}
+
+@keyframes floatHeartUp {
+    0% {
+        transform: translateY(0) translateX(0) rotate(0deg) scale(0.6);
+        opacity: 0;
+    }
+    10% { opacity: 0.55; }
+    50% {
+        transform: translateY(-50vh) translateX(var(--sway, 30px)) rotate(15deg) scale(1);
+    }
+    90% { opacity: 0.35; }
+    100% {
+        transform: translateY(-105vh) translateX(calc(var(--sway, 30px) * -1)) rotate(-10deg) scale(0.8);
+        opacity: 0;
+    }
+}
+
+/* --- انفجار ذهبي عند فتح الستارة --- */
+.curtain-burst-particle {
+    position: fixed;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 10001;
+    background: radial-gradient(circle, #fff7d6, #daa520);
+    box-shadow: 0 0 12px #daa520;
+    animation: burstFly 1.1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes burstFly {
+    0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(var(--bx), var(--by)) scale(0);
+        opacity: 0;
+    }
+}
+
+/* --- توهج خفيف للأزرار عند المرور --- */
+.save-date-btn,
+.map-link {
+    transition: all 0.35s ease;
+}
+
+.save-date-btn:hover,
+.map-link:hover {
+    box-shadow: 0 0 20px rgba(198, 161, 91, 0.45);
+    transform: translateY(-2px);
+}
+
+/* --- لمعان إضافي على صورة اللحظات --- */
+.video-placeholder {
+    box-shadow: 0 15px 40px rgba(154, 123, 63, 0.18);
+}
+
+/* --- احترام تقليل الحركة للتأثيرات الجديدة --- */
+@media (prefers-reduced-motion: reduce) {
+    .gold-text,
+    .section-title,
+    .welcome-names,
+    .footer-names,
+    .big-day,
+    .welcome-card,
+    .calendar-card,
+    .message-bubble,
+    .detail-item,
+    .dynamic-sparkle,
+    .float-heart,
+    .ampersand {
+        animation: none !important;
+    }
+
+    .hero-letter {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+    }
+
+    .section-title,
+    .welcome-names,
+    .footer-names,
+    .big-day {
+        color: var(--text-dark);
+        background: none;
+    }
+}
+
+
+/* =========================================================
+   24. 🎬 إنيميشنات جديدة (دخول الأسماء - عداد التاريخ - آلة كاتبة)
+   ========================================================= */
+
+/* --- مؤشر الآلة الكاتبة لكلمة اليوم --- */
+.day-name {
+    min-height: 1.5em;
+}
+
+.day-name.typing::after {
+    content: '';
+    display: inline-block;
+    width: 2px;
+    height: 1em;
+    background: var(--gold-accent);
+    margin-inline-start: 4px;
+    vertical-align: -0.12em;
+    box-shadow: 0 0 8px rgba(198, 161, 91, 0.8);
+    animation: caretBlink 0.7s step-end infinite;
+}
+
+@keyframes caretBlink {
+    0%, 100% { opacity: 1; }
+    50%      { opacity: 0; }
+}
+
+/* --- نبضة خفيفة للرقم بعد انتهاء العد --- */
+.big-day.counted {
+    animation: dayPop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes dayPop {
+    0%   { transform: scale(1); }
+    40%  { transform: scale(1.18); }
+    100% { transform: scale(1); }
+}
+
+/* --- ظهور التقويم كاملاً بدخول مسرحي --- */
+.calendar-card {
+    opacity: 0;
+    transform: translateY(40px) scale(0.92);
+}
+
+.calendar-card.cal-in {
+    animation: calendarEntrance 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes calendarEntrance {
+    0% {
+        opacity: 0;
+        transform: translateY(40px) scale(0.92);
+        filter: blur(6px);
+    }
+    60% { filter: blur(0); }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+    }
+}
+
+/* --- احترام تقليل الحركة --- */
+@media (prefers-reduced-motion: reduce) {
+    .day-name.typing::after,
+    .big-day.counted,
+    .calendar-card.cal-in {
+        animation: none !important;
+    }
+
+    .calendar-card {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+}
+
+
+/* =========================================================
+   25. 🔤 دخول الاسم العربي ككلمة واحدة متصلة
+   ========================================================= */
+
+/* الاسم العربي يدخل ككتلة واحدة — يحافظ على اتصال الحروف */
+.hero-word {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(30px) scale(0.9);
+    filter: blur(8px);
+}
+
+body.invitation-started .hero-word {
+    animation: wordReveal 1.1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    margin-top: 30px ;
+}
+
+@keyframes wordReveal {
+    0% {
+        opacity: 0;
+        transform: translateY(30px) scale(0.9);
+        filter: blur(8px);
+    }
+    60% {
+        filter: blur(0);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+    }
+}
+
+/* ترتيب الأسماء العربية: كل اسم يُقرأ من اليمين لليسار داخل مكانه */
+.hero-names .name-text {
+    direction: rtl;
+    unicode-bidi: embed;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero-word {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+        filter: none !important;
+    }
+}
+
+
+
+.welcome-card {
+    text-align: center;
+    padding: 25px 20px 45px;
+}
+
+.welcome-content {
+    display: flex;
+    flex-direction: column;
+    gap:20px;
+    align-items: center;
+}
+
+/* يتشرف */
+.welcome-intro {
+    margin: 0 0 8px;
+    font-size: 1.15rem;
+    line-height: 1.6;
+}
+
+/* أسماء الآباء */
+.parents-names {
+    margin: 0 0 12px;
+    font-size: 1.3rem;
+    line-height: 1.8;
+    font-weight: 500;
+}
+
+/* جملة الدعوة */
+.invitation-text {
+    margin: 0 0 14px;
+    font-size: 0.95rem;
+    line-height: 1.8;
+}
+
+/* أسماء العروسين */
+.welcome-names {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+
+    margin: 2px 0 16px;
+
+    font-size: 1.7rem;
+    line-height: 1.4;
+    font-weight: 600;
+}
+
+/* القلب */
+.welcome-names .heart {
+    font-size: 1.5rem;
+    font-weight: 400;
+}
+
+/* الدعاء والنص الأخير */
+.welcome-closing {
+    margin: 0;
+    padding-bottom: 15px;
+
+    font-size: 0.9rem;
+    line-height: 2;
+
+    max-width: 90%;
+}

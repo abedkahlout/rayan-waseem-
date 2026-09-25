@@ -132,7 +132,7 @@ function toggleMusic() {
 }
 
 function startAutoScroll() {
-    let scrollSpeed = 1; 
+    let scrollSpeed = 2; 
     let autoScrollAnimation; 
 
     function scrollStep() {

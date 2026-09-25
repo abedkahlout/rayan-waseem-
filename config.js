@@ -3,8 +3,8 @@ const weddingConfig = {
   pageTitle: "فرح وسيم وريان",
 
   couple: {
-    groomName: "وسيم",
-    brideName: "ريان",
+    groomName: "waseem",
+    brideName: "rayan",
     groomTitleWelcome: "وسيم",
     brideTitleWelcome: "ريان",
     groomPrefix: "",
@@ -28,20 +28,15 @@ const weddingConfig = {
     googleMapsQuery: "قاعة وشاليه الملكات القرارة",
   },
 
-  welcomeText: `يتشرّف
+  welcomeText: `نتشرّف
 
-الحاج الشهيد سامي القرا
-والحاج عبد المجيد أبو تيم
-
-بدعوتكم الكريمة لمشاركتهما فرحة زفاف ابنهما وابنتهما
+بدعوتكم الكريمة لمشاركتنا فرحة زفاف 
 
 وسيم
 ♡
 ريان
 
-وذلك لمشاركتهما فرحة هذه المناسبة السعيدة،
-سائلين الله أن يبارك لهما،
-ويجمع بينهما على خيرٍ ومودّةٍ ورحمة.
+وذلك لمشاركتنا فرحة هذه المناسبة السعيدة،
 `,
 
   details: [
@@ -56,26 +51,13 @@ const weddingConfig = {
     { name: "باقي الفقرات", time: "6:30", date: "11/10" },
   ],
 
-  congratsMessages: [
-    "الله يسعدكم ويهنيكم ويجمع بينكم دايمًا على خير.",
-    "مبروك من القلب، وإن شاء الله تكون بداية أجمل أيام حياتكم.",
-    "ياااا مبروك 😍 الله يتمم فرحتكم على خير ويكتبلكم عمر مليان حب وسعادة.",
-    "الله يتمم لكم على خير ✨",
-  ],
-
-  poem: `وفي عينيكِ رأيتُ حياةً
-تمنّيتُ أن يكونَ عمري كلُّه فيها
-`,
+ 
 
   closing: {
     line1: "بدأنا معًا أجمل فصول العمر،",
     line2: "وسعداء أن نشارككم أولى لحظاته.",
   },
 
-  families: {
-    groomFather: "الحاج الشهيد سامي القرا",
-    brideFather: "الحاج عبد المجيد أبو تيم",
-  },
 
   gift: {
     bankName: "",
@@ -84,8 +66,8 @@ const weddingConfig = {
   },
 
   images: {
-    momentsPhoto: "77.jpg",
-    storyPhoto: "77.jpg",
+    momentsPhoto: "",
+    storyPhoto: "",
     qrCode: "QR.png",
   },
 

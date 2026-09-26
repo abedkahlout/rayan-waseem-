@@ -37,42 +37,69 @@
         font-weight: normal;
         font-style: normal;
     }
-
 :root {
-    /* اللون الأساسي للنص - تم تعميقه للتباين مع الخلفية الداكنة */
-    --text-main: #C9C1B8;
+    /* =========================
+       النصوص
+    ========================= */
 
-    /* النصوص الثانوية - تم تفتيحها قليلاً لتكون مقروءة فوق الخلفية الداكنة */
-    --text-dark: #cfcac5;
+    /* النص الأساسي - عاجي دافئ */
+    --text-main: #E8DDD2;
 
-    /* خلفية البطاقات - تم تحويلها إلى لون فحمي داكن ودافئ مع الحفاظ على الشفافية */
-    --card-bg: rgba(30, 28, 26, 0.92);
+    /* النصوص الثانوية - شامبانيا هادئة */
+    --text-dark: #CDBEAF;
 
-    /* الذهبي الفاخر - تم تعديله ليتناسب مع درجات الذهب الخافتة في الإضاءة الخافتة */
-    --gold-accent: #A68451;
 
-    /* حدود ذهبية خفيفة - تم تعتيم اللون قليلاً ليتناسب مع الحدود في الإضاءة الخافتة */
-    --border-color: rgba(166, 132, 81, 0.5);
+    /* =========================
+       البطاقات
+    ========================= */
 
-    /* اللون الرئيسي - تم تعميقه ليكون بني داكن دافئ يتناسب مع الإضاءة الخافتة */
-    --primary-color: #d4cfc9;
+    /* خمري داكن شفاف يتناسق مع الخلفية */
+    --card-bg: rgba(38, 18, 29, 0.88);
 
-    /* خلفية الموقع - تم تعميقها لتصبح رمادية داكنة دافئة بدل العاجي */
-    --background-main: #2C2927;
 
-    /* لون العناوين - تم تفتيحه قليلاً ليكون عاجي دافئ بدل الأسود، للوضوح فوق الخلفية الداكنة */
-    --heading-color: #F7F3EC;
+    /* =========================
+       الذهبي
+    ========================= */
 
-    /* لون مساعد - تم تعميقه ليكون بيج متوسط دافئ بدل الفاتح */
-    --accent-soft: #C6BDB0;
+    /* ذهبي شامبانيا فاخر */
+    --gold-accent: #C9A46A;
 
-    /* لون داكن جدًا للتباين الأقصى - تم تعديله ليكون بني داكن غني جداً */
-    --royal-dark: #151311;
+    /* حدود ذهبية ناعمة */
+    --border-color: rgba(201, 164, 106, 0.45);
 
-    /* وردي/خمري دافئ - تم تعميقه ليكون بني محمر غامق ليبرز فوق الخلفية الداكنة */
-    --rose-red: #7A4E48;
-}
-    /* =========================================================
+
+    /* =========================
+       الألوان الرئيسية
+    ========================= */
+
+    /* عاجي مائل للشامبانيا */
+    --primary-color: #E5D6C8;
+
+    /* لون الخلفية الرئيسي */
+    --background-main: #24131D;
+
+
+    /* =========================
+       العناوين
+    ========================= */
+
+    /* عاجي فاتح جدًا */
+    --heading-color: #F7EFE6;
+
+
+    /* =========================
+       ألوان مساعدة
+    ========================= */
+
+    /* بيج وردي / شامبانيا */
+    --accent-soft: #BFA79B;
+
+    /* خمري شديد العمق */
+    --royal-dark: #160B12;
+
+    /* موف وردي فاخر */
+    --rose-red: #8C5365;
+}    /* =========================================================
     3. إعادة الضبط الأساسية (Reset & Body)
     ========================================================= */
     * {
@@ -99,8 +126,8 @@
         left: 0;
         width: 100%;
         height: 100vh;
-        background-image: url('back.jpeg');
-        filter: brightness(0.5);
+        background-image: url('back.png');
+        /* filter: brightness(0.5); */
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
@@ -297,17 +324,36 @@
     /* =========================================================
     6. القسم الرئيسي (Hero)
     ========================================================= */
-    .hero {
-        position: relative; /* لتثبيت مؤشر السحب scroll-indicator بالأسفل */
-        height: 80vh;
-        margin: 0 auto;
-        text-align: center;
-        padding: 40px 20px 120px;
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-        align-items: center;
-    }
+.hero {
+    position: relative;
+    height: 80vh;
+    margin: 0 auto;
+    width: 100vw;
+    text-align: center;
+    padding: 40px 20px 120px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    top: 30px;
+    left: 56%;
+    width: 100vw;
+    height: 30vh;
+    transform: translateX(-50%);
+    background-image: url('365.png');
+    background-size: cover;
+    background-position: center;
+    top: 150px;
+    background-repeat: no-repeat;
+    z-index: -1;
+}
 
     .hero-subtitle {
         font-size: 1.7rem;
@@ -426,10 +472,11 @@
         margin-bottom: 30px;
     }
 
-    .welcome-names {
+    .welcome-names2 {
         font-weight: bold;
         font-size: 1.2rem;
         color: var(--text-dark);
+
     }
 
 
